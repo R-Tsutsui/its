@@ -21,4 +21,8 @@ public class IssueService {
         issueRepository.insert(summary, description);
     }
 
+    public IssueEntity findById(long issueId) {
+        return issueRepository.findById(issueId);
+    }
+
 }
