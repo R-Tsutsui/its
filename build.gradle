@@ -2,10 +2,23 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.4.5'
 	id 'io.spring.dependency-management' version '1.1.7'
+
+	// MyBatis Generatorプラグイン
+	id "com.thinkimi.gradle.MybatisGenerator" version "2.1.2"
 }
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
+
+mybatisGenerator {
+	verbose = true
+	configFile = "src/main/resources/generatorConfig.xml"
+
+	dependencies {
+		mybatisGenerator 'org.mybatis.generator:mybatis-generator-core:1.4.2'
+		mybatisGenerator 'com.h2database:h2:2.2.224'
+	}
+}
 
 java {
 	toolchain {
@@ -17,6 +30,7 @@ configurations {
 	compileOnly {
 		extendsFrom annotationProcessor
 	}
+	mybatisGenerator
 }
 
 repositories {
